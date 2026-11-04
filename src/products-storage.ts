@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import type { Product } from './types';
 import { PRODUCTS } from './data';
 
-const PRODUCTS_STORAGE_KEY = 'kdf_products_catalog_v3';
+const PRODUCTS_STORAGE_KEY = 'kdf_products_catalog_v5';
 const PRODUCTS_EVENT = 'kdf_products_catalog_change';
 
 export function getStoredProducts(): Product[] {

@@ -84,7 +84,7 @@ export default function Hero({
           <div className="lg:col-span-6 xl:col-span-7 relative flex items-center justify-center lg:justify-end">
             <div className="relative w-full max-w-2xl lg:max-w-none rounded-2xl sm:rounded-3xl overflow-hidden shadow-luxury border border-[#EEDBCA]/60 bg-[#F5EBE1]">
               <img
-                src="/mockup_crops/hero_bowls_hd.png"
+                src="https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784659/krisha_dry_fruits/products/hero_bowls.png"
                 alt="Krisha Dry Fruits - Almonds, Cashews, Walnuts, Pistachios, Dates and Raisins"
                 className="w-full h-auto object-cover filter contrast-[1.03] select-none"
                 loading="eager"

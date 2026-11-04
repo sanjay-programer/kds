@@ -395,6 +395,9 @@ function App() {
       !selectedCategory ||
       selectedCategory === 'all' ||
       p.category === selectedCategory ||
+      (selectedCategory === 'nuts' && ['almonds', 'cashews', 'walnuts', 'pistachios'].includes(p.category || '')) ||
+      (selectedCategory === 'dates-figs' && ['dates', 'figs'].includes(p.category || '')) ||
+      (selectedCategory === 'dried-fruits' && ['raisins', 'figs'].includes(p.category || '')) ||
       (selectedCategory === 'cashews' && (p.category === 'cashews' || p.grade?.toUpperCase().startsWith('W'))) ||
       (selectedCategory === 'almonds' && (p.category === 'almonds' || p.name.toLowerCase().includes('almond') || p.name.toLowerCase().includes('mamra') || p.name.toLowerCase().includes('badam'))) ||
       (selectedCategory === 'walnuts' && (p.category === 'walnuts' || p.name.toLowerCase().includes('walnut') || p.name.toLowerCase().includes('akhrot'))) ||
@@ -477,7 +480,17 @@ function App() {
                 onView={viewProduct}
                 loading={productsLoading}
                 title={
-                  selectedCategory
+                  selectedCategory === 'nuts'
+                    ? 'Premium Nuts Collection'
+                    : selectedCategory === 'dates-figs'
+                    ? 'Dates & Figs Collection'
+                    : selectedCategory === 'dried-fruits'
+                    ? 'Sun-Dried Fruits Collection'
+                    : selectedCategory === 'berries-seeds'
+                    ? 'Seeds & Trail Mixes Collection'
+                    : selectedCategory === 'gift-boxes'
+                    ? 'Gift Hampers & Keepsake Boxes'
+                    : selectedCategory
                     ? `${CATEGORIES.find((c) => c.id === selectedCategory)?.name || 'Filtered'} Selection`
                     : 'Best Sellers'
                 }

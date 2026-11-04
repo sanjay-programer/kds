@@ -1,43 +1,43 @@
 import type { Product, ProductCategory, CategoryInfo, Quantity, VariantPrice } from './types';
 
-// High-resolution, authentic, tested food photography URLs
+// High-resolution Cloudinary media URLs hosted on user's cloud (dqb3zf1bw)
 export const DRY_FRUITS_IMG = {
   // Almonds
-  almondsRawBowl: 'https://images.pexels.com/photos/12326584/pexels-photo-12326584.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  almondsMacro: 'https://images.pexels.com/photos/18876242/pexels-photo-18876242.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  almondsWood: 'https://images.pexels.com/photos/6803749/pexels-photo-6803749.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  almondsRoasted: 'https://images.pexels.com/photos/4663476/pexels-photo-4663476.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
+  almondsRawBowl: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784692/krisha_dry_fruits/catalog/almonds_mamra.jpg',
+  almondsMacro: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784664/krisha_dry_fruits/products/prod_almonds.jpg',
+  almondsWood: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784664/krisha_dry_fruits/products/prod_almonds.jpg',
+  almondsRoasted: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784664/krisha_dry_fruits/products/prod_almonds.jpg',
 
   // Cashews
-  cashewsBowl: 'https://images.pexels.com/photos/36631827/pexels-photo-36631827.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  cashewsBoard: 'https://images.pexels.com/photos/4499222/pexels-photo-4499222.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  cashewsRoasted: 'https://images.pexels.com/photos/6730156/pexels-photo-6730156.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  cashewsClose: 'https://images.pexels.com/photos/18876240/pexels-photo-18876240.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  cashewsSpiced: 'https://images.pexels.com/photos/29060103/pexels-photo-29060103.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
+  cashewsBowl: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784666/krisha_dry_fruits/products/prod_cashews.jpg',
+  cashewsBoard: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784696/krisha_dry_fruits/catalog/cashews_w240.jpg',
+  cashewsRoasted: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784697/krisha_dry_fruits/catalog/cashews_w320.jpg',
+  cashewsClose: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784666/krisha_dry_fruits/products/prod_cashews.jpg',
+  cashewsSpiced: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784666/krisha_dry_fruits/products/prod_cashews.jpg',
 
   // Walnuts
-  walnutsHalves: 'https://images.pexels.com/photos/9017852/pexels-photo-9017852.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  walnutsBowl: 'https://images.pexels.com/photos/5472144/pexels-photo-5472144.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  walnutsInShell: 'https://images.pexels.com/photos/5202113/pexels-photo-5202113.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
+  walnutsHalves: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784693/krisha_dry_fruits/catalog/walnuts_kashmiri.jpg',
+  walnutsBowl: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784694/krisha_dry_fruits/catalog/walnuts_chilean.jpg',
+  walnutsInShell: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784693/krisha_dry_fruits/catalog/walnuts_kashmiri.jpg',
 
   // Pistachios
-  pistachiosBowl: 'https://images.pexels.com/photos/19052912/pexels-photo-19052912.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  pistachiosRoasted: 'https://images.pexels.com/photos/32175377/pexels-photo-32175377.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  pistachiosEmerald: 'https://images.pexels.com/photos/30308595/pexels-photo-30308595.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
+  pistachiosBowl: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784667/krisha_dry_fruits/products/prod_pistachios.jpg',
+  pistachiosRoasted: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784667/krisha_dry_fruits/products/prod_pistachios.jpg',
+  pistachiosEmerald: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784698/krisha_dry_fruits/catalog/pistachios_emerald.jpg',
 
   // Dates & Figs
-  datesMedjool: 'https://images.pexels.com/photos/13682249/pexels-photo-13682249.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  datesAjwa: 'https://images.pexels.com/photos/5425013/pexels-photo-5425013.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  figsAnjeer: 'https://images.pexels.com/photos/33315987/pexels-photo-33315987.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
+  datesMedjool: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784668/krisha_dry_fruits/products/prod_dates.jpg',
+  datesAjwa: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784668/krisha_dry_fruits/products/prod_dates.jpg',
+  figsAnjeer: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784699/krisha_dry_fruits/catalog/figs_afghan.jpg',
 
   // Raisins & Berries
-  raisinsGreen: 'https://images.pexels.com/photos/11135641/pexels-photo-11135641.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  berriesAssorted: 'https://images.pexels.com/photos/9615877/pexels-photo-9615877.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  seedsTrailMix: 'https://images.pexels.com/photos/9615878/pexels-photo-9615878.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
+  raisinsGreen: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784700/krisha_dry_fruits/catalog/raisins_green.jpg',
+  berriesAssorted: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784701/krisha_dry_fruits/catalog/seeds_7in1.jpg',
+  seedsTrailMix: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784701/krisha_dry_fruits/catalog/seeds_7in1.jpg',
 
   // Luxury Hampers & Gift Boxes
-  giftBoxRoyal: 'https://images.pexels.com/photos/11135641/pexels-photo-11135641.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
-  giftTrayAssorted: 'https://images.pexels.com/photos/9615877/pexels-photo-9615877.jpeg?auto=compress&cs=tinysrgb&h=800&w=1200',
+  giftBoxRoyal: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784702/krisha_dry_fruits/catalog/gift_imperial.jpg',
+  giftTrayAssorted: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784702/krisha_dry_fruits/catalog/gift_imperial.jpg',
 };
 
 export const CATEGORIES: CategoryInfo[] = [
@@ -187,8 +187,13 @@ export const PRODUCTS: Product[] = [
     longDescription: 'Nonpareil is the gold standard of California almonds. Clean, uniform, and delicately sweet, they are perfect for daily breakfasts, smoothies, baking, or energizing work-desk snacking.',
     origin: 'California, United States',
     gradeDescription: 'Nonpareil Extra #1 grade, 20/22 caliber, double laser sorted.',
-    image: '/mockup_crops/prod1_almonds_hd.jpg',
-    gallery: ['/mockup_crops/prod1_almonds_hd.jpg', DRY_FRUITS_IMG.almondsWood, DRY_FRUITS_IMG.almondsMacro, DRY_FRUITS_IMG.almondsRoasted],
+    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789169/krisha_dry_fruits/products_hd/studio_almonds.jpg',
+    gallery: [
+      'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789169/krisha_dry_fruits/products_hd/studio_almonds.jpg',
+      DRY_FRUITS_IMG.almondsWood,
+      DRY_FRUITS_IMG.almondsMacro,
+      DRY_FRUITS_IMG.almondsRoasted,
+    ],
     rating: 4.92,
     reviewCount: 310,
     badge: 'Bestseller',
@@ -208,7 +213,7 @@ export const PRODUCTS: Product[] = [
       {
         type: 'Raw',
         description: 'Crisp whole raw California almonds with uniform golden skin.',
-        image: '/mockup_crops/prod1_almonds_hd.jpg',
+        image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789169/krisha_dry_fruits/products_hd/studio_almonds.jpg',
         prices: makePriceTier(840, 1.0),
       },
       {
@@ -244,9 +249,9 @@ export const PRODUCTS: Product[] = [
     longDescription: 'W180 represents the absolute pinnacle of cashew grading: only 180 whole kernel nuts make up one pound (453 grams). Every batch is shade-dried, hand-cracked, and strictly non-fumigated. Perfect for royal gifting, festive offerings, or as an indulgent everyday superfood.',
     origin: 'Goa Coastal Belt, India',
     gradeDescription: '170–180 whole kernels per pound. Maximum size, zero artificial polish.',
-    image: '/mockup_crops/prod2_cashews_hd.jpg',
+    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789170/krisha_dry_fruits/products_hd/studio_cashews.jpg',
     gallery: [
-      '/mockup_crops/prod2_cashews_hd.jpg',
+      'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789170/krisha_dry_fruits/products_hd/studio_cashews.jpg',
       DRY_FRUITS_IMG.cashewsBowl,
       DRY_FRUITS_IMG.cashewsBoard,
       DRY_FRUITS_IMG.cashewsRoasted,
@@ -271,7 +276,7 @@ export const PRODUCTS: Product[] = [
       {
         type: 'Raw',
         description: 'Pure, sweet, natural raw cashews straight from the shell. Mild and buttery.',
-        image: '/mockup_crops/prod2_cashews_hd.jpg',
+        image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789170/krisha_dry_fruits/products_hd/studio_cashews.jpg',
         prices: makePriceTier(1380, 1.0),
       },
       {
@@ -307,8 +312,12 @@ export const PRODUCTS: Product[] = [
     longDescription: 'Authentic tree-ripened pistachios open naturally, guaranteeing complete maturity and rich flavor. Zero mechanical cracking or chemical bleaching. Crack open the shell and experience authentic royal Persian pistachio flavor.',
     origin: 'Rafsanjan, Iran',
     gradeDescription: 'Akbari 20/22 naturally open shells, dry-roasted with pink salt.',
-    image: '/mockup_crops/prod3_pistachios_hd.jpg',
-    gallery: ['/mockup_crops/prod3_pistachios_hd.jpg', DRY_FRUITS_IMG.pistachiosBowl, DRY_FRUITS_IMG.pistachiosRoasted],
+    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789171/krisha_dry_fruits/products_hd/studio_pistachios.jpg',
+    gallery: [
+      'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789171/krisha_dry_fruits/products_hd/studio_pistachios.jpg',
+      DRY_FRUITS_IMG.pistachiosBowl,
+      DRY_FRUITS_IMG.pistachiosRoasted,
+    ],
     rating: 4.93,
     reviewCount: 345,
     badge: 'Best Value',
@@ -329,7 +338,7 @@ export const PRODUCTS: Product[] = [
       {
         type: 'Roasted & Salted',
         description: 'Tree-opened jumbo pistachios roasted with Himalayan pink salt.',
-        image: '/mockup_crops/prod3_pistachios_hd.jpg',
+        image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789171/krisha_dry_fruits/products_hd/studio_pistachios.jpg',
         prices: makePriceTier(1390, 1.0),
       },
       {
@@ -359,8 +368,12 @@ export const PRODUCTS: Product[] = [
     longDescription: 'Often called "Nature’s Caramel," Medjool dates are the largest and most prized variety of date palm. Plump and moist, they are an incredible natural pre-workout booster, healthy dessert substitute, and sacred festive treat.',
     origin: 'Al-Qassim, Saudi Arabia',
     gradeDescription: 'Jumbo Medjool, naturally moist, 0% added sugar or syrup.',
-    image: '/mockup_crops/prod4_dates_hd.jpg',
-    gallery: ['/mockup_crops/prod4_dates_hd.jpg', DRY_FRUITS_IMG.datesMedjool, DRY_FRUITS_IMG.datesAjwa],
+    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789172/krisha_dry_fruits/products_hd/studio_dates.jpg',
+    gallery: [
+      'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789172/krisha_dry_fruits/products_hd/studio_dates.jpg',
+      DRY_FRUITS_IMG.datesMedjool,
+      DRY_FRUITS_IMG.datesAjwa,
+    ],
     rating: 4.97,
     reviewCount: 468,
     badge: 'Fresh Stock',
@@ -381,7 +394,7 @@ export const PRODUCTS: Product[] = [
       {
         type: 'Natural Whole',
         description: 'Plump whole royal Medjool dates with soft, velvety pulp.',
-        image: '/mockup_crops/prod4_dates_hd.jpg',
+        image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793789172/krisha_dry_fruits/products_hd/studio_dates.jpg',
         prices: makePriceTier(1450, 1.0),
       },
       {
