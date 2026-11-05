@@ -15,6 +15,58 @@ export interface LocationBanner {
   linkText: string;
 }
 
+export interface CategoryBannerItem {
+  id: string;
+  categoryId: string;
+  categoryIds?: string[];
+  title: string;
+  subtitle: string;
+  image: string;
+}
+
+export const DEFAULT_CATEGORY_BANNERS: CategoryBannerItem[] = [
+  {
+    id: 'nuts',
+    categoryId: 'nuts',
+    categoryIds: ['almonds', 'cashews', 'walnuts', 'pistachios'],
+    title: 'Premium Nuts',
+    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784660/krisha_dry_fruits/products/cat_nuts.jpg',
+    subtitle: 'Almonds, Cashews & Walnuts',
+  },
+  {
+    id: 'dates',
+    categoryId: 'dates-figs',
+    categoryIds: ['dates', 'figs'],
+    title: 'Dates & Figs',
+    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784661/krisha_dry_fruits/products/cat_dates.jpg',
+    subtitle: 'Royal Medjool & Afghan Anjeer',
+  },
+  {
+    id: 'dried-fruits',
+    categoryId: 'dried-fruits',
+    categoryIds: ['raisins', 'figs'],
+    title: 'Dried Fruits',
+    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784662/krisha_dry_fruits/products/cat_dried_fruits.jpg',
+    subtitle: 'Golden Raisins & Sun-Dried Fruits',
+  },
+  {
+    id: 'seeds',
+    categoryId: 'berries-seeds',
+    categoryIds: ['berries-seeds'],
+    title: 'Seeds & Trail Mixes',
+    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784663/krisha_dry_fruits/products/cat_seeds.jpg',
+    subtitle: 'Super Seeds & Roasted Pistachios',
+  },
+  {
+    id: 'hampers',
+    categoryId: 'gift-boxes',
+    categoryIds: ['gift-boxes'],
+    title: 'Gift Hampers',
+    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784664/krisha_dry_fruits/products/cat_hampers.jpg',
+    subtitle: 'Festive Boxes & Keepsake Trays',
+  },
+];
+
 export interface HeroContent {
   badge: string;
   titleLine1: string;
@@ -85,9 +137,11 @@ export const DEFAULT_DELIVERY_SETTINGS: DeliverySettings = {
 };
 
 export interface SiteContent {
+  logo?: string;
   announcement: string;
   hero: HeroContent;
   heroSlides?: HeroSlide[];
+  categoryBanners?: CategoryBannerItem[];
   features: FeatureItem[];
   locationBanners: LocationBanner[];
   contact: ContactInfo;
@@ -97,7 +151,9 @@ export interface SiteContent {
 }
 
 export const DEFAULT_SITE_CONTENT: SiteContent = {
+  logo: '/Krisha_Dry_Fruits_logo.png',
   announcement: 'Free pan-India shipping over ₹1,200 • Freshly hand-sorted & packed within 48h • Authentic Kashmiri Mamra, California Almonds, Medjool Dates & Goan Cashews',
+  categoryBanners: DEFAULT_CATEGORY_BANNERS,
   hero: {
     badge: "India's Premier Artisanal Dry Fruits & Nuts House",
     titleLine1: 'Pure Dry Fruits,',

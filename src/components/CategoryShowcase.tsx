@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { useSiteContent, DEFAULT_CATEGORY_BANNERS, type CategoryBannerItem } from '@/site-content';
 
 interface CategoryShowcaseProps {
   onSelectCategory: (categoryId: string) => void;
@@ -6,59 +7,21 @@ interface CategoryShowcaseProps {
   selectedCategory?: string | null;
 }
 
-interface ShowcaseItem {
-  id: string;
-  categoryId: string;
-  title: string;
-  image: string;
-  subtitle: string;
-}
-
-const SHOWCASE_ITEMS: ShowcaseItem[] = [
-  {
-    id: 'nuts',
-    categoryId: 'nuts',
-    title: 'Premium Nuts',
-    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784660/krisha_dry_fruits/products/cat_nuts.jpg',
-    subtitle: 'Almonds, Cashews & Walnuts',
-  },
-  {
-    id: 'dates',
-    categoryId: 'dates-figs',
-    title: 'Dates & Figs',
-    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784661/krisha_dry_fruits/products/cat_dates.jpg',
-    subtitle: 'Royal Medjool & Afghan Anjeer',
-  },
-  {
-    id: 'dried-fruits',
-    categoryId: 'dried-fruits',
-    title: 'Dried Fruits',
-    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784662/krisha_dry_fruits/products/cat_dried_fruits.jpg',
-    subtitle: 'Golden Raisins & Sun-Dried Fruits',
-  },
-  {
-    id: 'seeds',
-    categoryId: 'berries-seeds',
-    title: 'Seeds & Trail Mixes',
-    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784663/krisha_dry_fruits/products/cat_seeds.jpg',
-    subtitle: 'Super Seeds & Roasted Pistachios',
-  },
-  {
-    id: 'hampers',
-    categoryId: 'gift-boxes',
-    title: 'Gift Hampers',
-    image: 'https://res.cloudinary.com/dqb3zf1bw/image/upload/v1793784664/krisha_dry_fruits/products/cat_hampers.jpg',
-    subtitle: 'Festive Boxes & Keepsake Trays',
-  },
-];
-
 export default function CategoryShowcase({
   onSelectCategory,
   onExploreAll,
   selectedCategory,
 }: CategoryShowcaseProps) {
-  const handleCardClick = (catId: string) => {
-    onSelectCategory(catId);
+  const siteContent = useSiteContent();
+  const items = (siteContent.categoryBanners && siteContent.categoryBanners.length > 0)
+    ? siteContent.categoryBanners
+    : DEFAULT_CATEGORY_BANNERS;
+
+  const handleCardClick = (item: CategoryBannerItem) => {
+    const targetCat = item.categoryIds && item.categoryIds.length > 0
+      ? item.categoryIds.join(',')
+      : item.categoryId;
+    onSelectCategory(targetCat);
     setTimeout(() => {
       const el = document.getElementById('products-section');
       if (el) {
@@ -70,16 +33,19 @@ export default function CategoryShowcase({
   return (
     <section className="bg-[#FAF7F2] py-5 sm:py-7 border-b border-[#EEDBCA]/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 5-Column Grid on Desktop, 2/3 cols on tablet, swipe/2-cols on mobile */}
+        {/* Responsive Grid based on card count */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
-          {SHOWCASE_ITEMS.map((item, index) => {
-            const isSelected = selectedCategory === item.categoryId;
-            const isLastOnMobileOdd = index === 4;
+          {items.map((item, index) => {
+            const targetCat = item.categoryIds && item.categoryIds.length > 0
+              ? item.categoryIds.join(',')
+              : item.categoryId;
+            const isSelected = selectedCategory === targetCat || (item.categoryIds && item.categoryIds.includes(selectedCategory || ''));
+            const isLastOnMobileOdd = index === items.length - 1 && items.length % 2 !== 0;
 
             return (
               <button
                 key={item.id}
-                onClick={() => handleCardClick(item.categoryId)}
+                onClick={() => handleCardClick(item)}
                 className={`group relative rounded-2xl sm:rounded-3xl overflow-hidden border transition-all duration-300 text-left p-0 cursor-pointer shadow-xs hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#8C6339] ${
                   isSelected
                     ? 'border-[#8C6339] ring-2 ring-[#8C6339]/40 shadow-md'

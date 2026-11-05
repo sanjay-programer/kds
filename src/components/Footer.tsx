@@ -20,7 +20,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full overflow-hidden bg-white ring-2 ring-brand-400/80 shadow-md flex items-center justify-center p-0.5 shrink-0">
                 <img
-                  src="/Krisha_Dry_Fruits_logo.png"
+                  src={content.logo || "/Krisha_Dry_Fruits_logo.png"}
                   alt="Krisha Dry Fruits"
                   className="w-full h-full object-cover rounded-full"
                 />

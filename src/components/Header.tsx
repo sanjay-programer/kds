@@ -180,7 +180,7 @@ export default function Header({
               >
                 <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-white ring-1 ring-[#CDB397]/60 shadow-xs flex items-center justify-center p-0.5 group-hover:ring-[#8C6339] transition-all shrink-0">
                   <img
-                    src="/Krisha_Dry_Fruits_logo.png"
+                    src={content.logo || "/Krisha_Dry_Fruits_logo.png"}
                     alt="Krisha Dry Fruits"
                     className="w-full h-full object-cover rounded-full"
                   />
@@ -612,7 +612,7 @@ export default function Header({
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full overflow-hidden bg-white ring-1 ring-[#CDB397] p-0.5 shrink-0">
                   <img
-                    src="/Krisha_Dry_Fruits_logo.png"
+                    src={content.logo || "/Krisha_Dry_Fruits_logo.png"}
                     alt="Krisha Dry Fruits"
                     className="w-full h-full object-cover rounded-full"
                   />

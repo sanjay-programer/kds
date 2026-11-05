@@ -23,7 +23,7 @@ import { api } from '@/api';
 import type { Product, OrderDetails, ProductCategory } from '@/types';
 import { saveCustomerOrder, getCustomerOrders } from '@/orders-storage';
 import { useStoredProducts, syncWithServerProducts } from '@/products-storage';
-import { syncWithServerContent } from '@/site-content';
+import { syncWithServerContent, useSiteContent } from '@/site-content';
 import { syncWithServerReviews } from '@/reviews-storage';
 import { CATEGORIES } from '@/data';
 
@@ -49,6 +49,7 @@ function App() {
   const [orderLoading, setOrderLoading] = useState(false);
   const [orderNotFound, setOrderNotFound] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const siteContent = useSiteContent();
 
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory | null>(() => {
     if (typeof window === 'undefined') return null;
@@ -390,23 +391,28 @@ function App() {
   const filteredProducts = products.filter((p) => {
     if (p.active === false) return false;
 
-    // 1. Category Filter
+    // 1. Category Filter (Supports single category or multi-category comma separated list)
+    const activeCatList = selectedCategory
+      ? selectedCategory.split(',').map((c) => c.trim().toLowerCase())
+      : [];
+    const pCat = (p.category || '').toLowerCase();
+
     const matchesCategory =
       !selectedCategory ||
       selectedCategory === 'all' ||
-      p.category === selectedCategory ||
-      (selectedCategory === 'nuts' && ['almonds', 'cashews', 'walnuts', 'pistachios'].includes(p.category || '')) ||
-      (selectedCategory === 'dates-figs' && ['dates', 'figs'].includes(p.category || '')) ||
-      (selectedCategory === 'dried-fruits' && ['raisins', 'figs'].includes(p.category || '')) ||
-      (selectedCategory === 'cashews' && (p.category === 'cashews' || p.grade?.toUpperCase().startsWith('W'))) ||
-      (selectedCategory === 'almonds' && (p.category === 'almonds' || p.name.toLowerCase().includes('almond') || p.name.toLowerCase().includes('mamra') || p.name.toLowerCase().includes('badam'))) ||
-      (selectedCategory === 'walnuts' && (p.category === 'walnuts' || p.name.toLowerCase().includes('walnut') || p.name.toLowerCase().includes('akhrot'))) ||
-      (selectedCategory === 'pistachios' && (p.category === 'pistachios' || p.name.toLowerCase().includes('pistachio') || p.name.toLowerCase().includes('pista'))) ||
-      (selectedCategory === 'dates' && (p.category === 'dates' || p.name.toLowerCase().includes('date') || p.name.toLowerCase().includes('khajoor'))) ||
-      (selectedCategory === 'figs' && (p.category === 'figs' || p.name.toLowerCase().includes('fig') || p.name.toLowerCase().includes('anjeer'))) ||
-      (selectedCategory === 'raisins' && (p.category === 'raisins' || p.name.toLowerCase().includes('raisin') || p.name.toLowerCase().includes('kishmish'))) ||
-      (selectedCategory === 'berries-seeds' && (p.category === 'berries-seeds' || p.name.toLowerCase().includes('seed') || p.name.toLowerCase().includes('cranberry') || p.name.toLowerCase().includes('berry'))) ||
-      (selectedCategory === 'gift-boxes' && (p.category === 'gift-boxes' || p.name.toLowerCase().includes('gift') || p.name.toLowerCase().includes('box') || p.name.toLowerCase().includes('hamper')));
+      activeCatList.includes(pCat) ||
+      (activeCatList.includes('nuts') && ['almonds', 'cashews', 'walnuts', 'pistachios'].includes(pCat)) ||
+      (activeCatList.includes('dates-figs') && ['dates', 'figs'].includes(pCat)) ||
+      (activeCatList.includes('dried-fruits') && ['raisins', 'figs'].includes(pCat)) ||
+      (activeCatList.includes('cashews') && (pCat === 'cashews' || p.grade?.toUpperCase().startsWith('W'))) ||
+      (activeCatList.includes('almonds') && (pCat === 'almonds' || p.name.toLowerCase().includes('almond') || p.name.toLowerCase().includes('mamra') || p.name.toLowerCase().includes('badam'))) ||
+      (activeCatList.includes('walnuts') && (pCat === 'walnuts' || p.name.toLowerCase().includes('walnut') || p.name.toLowerCase().includes('akhrot'))) ||
+      (activeCatList.includes('pistachios') && (pCat === 'pistachios' || p.name.toLowerCase().includes('pistachio') || p.name.toLowerCase().includes('pista'))) ||
+      (activeCatList.includes('dates') && (pCat === 'dates' || p.name.toLowerCase().includes('date') || p.name.toLowerCase().includes('khajoor'))) ||
+      (activeCatList.includes('figs') && (pCat === 'figs' || p.name.toLowerCase().includes('fig') || p.name.toLowerCase().includes('anjeer'))) ||
+      (activeCatList.includes('raisins') && (pCat === 'raisins' || p.name.toLowerCase().includes('raisin') || p.name.toLowerCase().includes('kishmish'))) ||
+      (activeCatList.includes('berries-seeds') && (pCat === 'berries-seeds' || p.name.toLowerCase().includes('seed') || p.name.toLowerCase().includes('cranberry') || p.name.toLowerCase().includes('berry'))) ||
+      (activeCatList.includes('gift-boxes') && (pCat === 'gift-boxes' || p.name.toLowerCase().includes('gift') || p.name.toLowerCase().includes('box') || p.name.toLowerCase().includes('hamper')));
 
     // 2. Search Query
     const matchesSearch = !searchQuery || (
@@ -480,18 +486,23 @@ function App() {
                 onView={viewProduct}
                 loading={productsLoading}
                 title={
-                  selectedCategory === 'nuts'
-                    ? 'Premium Nuts Collection'
-                    : selectedCategory === 'dates-figs'
-                    ? 'Dates & Figs Collection'
-                    : selectedCategory === 'dried-fruits'
-                    ? 'Sun-Dried Fruits Collection'
-                    : selectedCategory === 'berries-seeds'
-                    ? 'Seeds & Trail Mixes Collection'
-                    : selectedCategory === 'gift-boxes'
-                    ? 'Gift Hampers & Keepsake Boxes'
-                    : selectedCategory
-                    ? `${CATEGORIES.find((c) => c.id === selectedCategory)?.name || 'Filtered'} Selection`
+                  selectedCategory
+                    ? siteContent.categoryBanners?.find(
+                        (b) =>
+                          (b.categoryIds && b.categoryIds.join(',') === selectedCategory) ||
+                          b.categoryId === selectedCategory
+                      )?.title ||
+                      (selectedCategory === 'nuts'
+                        ? 'Premium Nuts Collection'
+                        : selectedCategory === 'dates-figs'
+                        ? 'Dates & Figs Collection'
+                        : selectedCategory === 'dried-fruits'
+                        ? 'Sun-Dried Fruits Collection'
+                        : selectedCategory === 'berries-seeds'
+                        ? 'Seeds & Trail Mixes Collection'
+                        : selectedCategory === 'gift-boxes'
+                        ? 'Gift Hampers & Keepsake Boxes'
+                        : `${CATEGORIES.find((c) => c.id === selectedCategory)?.name || 'Curated'} Selection`)
                     : 'Best Sellers'
                 }
                 subtitle={
